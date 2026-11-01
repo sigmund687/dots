@@ -14,7 +14,7 @@ if [ "$(git status --short)" != '' ]; then
     changes=true
 fi
 
-if git status | grep -q 'Your branch is ahead of'; then
+if [ -n "$(git rev-list --max-count=1 '@{upstream}..HEAD' 2>/dev/null)" ]; then
     unpushed=true
 fi
 
